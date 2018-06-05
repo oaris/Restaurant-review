@@ -80,6 +80,13 @@ nav h1 a {
     font-size: 17px;
     margin: 0;
     width: calc(50% - 80px);
+		text-align: left;
+		height: 25px;
+
+
+}
+#bread_nav  {
+  height: 0px;
 }
 
 /* Display list items side by side */
@@ -180,7 +187,7 @@ nav h1 a {
   display: block;
   margin-top: 15px;
   max-width: 100%;
-  min-height: 248px;
+  min-height: 50%;
   min-width: 100%;
 }
 #restaurants-list li h1 {

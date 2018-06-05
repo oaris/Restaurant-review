@@ -23,6 +23,7 @@ let cachedArray = [
 
 //Source https://developers.google.com/web/fundamentals/primers/service-workers/
 self.addEventListener('install', function(event) {
+
   event.waitUntil(caches.open(CACHE_NAME).then(function(cache) {
     console.log('opened cache');
     return cache.addAll(cachedArray);
@@ -44,7 +45,15 @@ self.addEventListener('activate', function(event) {
 });
 
 self.addEventListener('fetch', function(event) {
-
+  const url = new URL(event.request.url);
+  
+  if (url.pathname.startsWith('/restaurant.html')) {
+        event.respondWith(
+            caches.match('restaurant.html')
+            .then(response => response || fetch(event.request))
+        );
+        return;
+  }
   if (event.request.url.startsWith(self.location.origin)) {
   event.respondWith(caches.match(event.request).then(function(response) {
     if (response) {
